@@ -16,7 +16,7 @@ public partial class CameraOrbit : Camera3D
 	public override void _Process(double delta)
 	{
 		elapsed += delta;
-		Position += this.GlobalTransform.Basis.Z *(0.25f * (float)Mathf.Sin(elapsed));
+		Position += this.GlobalTransform.Basis.Z *(float)Mathf.Sin(elapsed);
 	}
 
     public override void _Input(InputEvent @event)
