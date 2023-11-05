@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvi0c6gclebhp"]
+[gd_scene load_steps=14 format=3 uid="uid://cvi0c6gclebhp"]
 
 [ext_resource type="Script" path="res://Scenes/TestScene3D.cs" id="1_258jl"]
 [ext_resource type="PackedScene" uid="uid://kbuwn2u1r8kk" path="res://Models/Character1/character_1.tscn" id="1_xhylc"]
 [ext_resource type="Script" path="res://Models/Character1/FunnyWalk.cs" id="3_k8rsv"]
 [ext_resource type="AudioStream" uid="uid://dslc5f76gskxv" path="res://Sound/Music/ff_full.wav" id="3_oyxrj"]
+[ext_resource type="Script" path="res://Models/Ghost/ghost.cs" id="6_hpt3x"]
 [ext_resource type="PackedScene" uid="uid://bcbcyngm38vdp" path="res://Models/Ghost/ghost.tscn" id="6_x62my"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxvg8"]
@@ -74,6 +75,7 @@ size = Vector3(20.1898, 15.904, 16.8657)
 
 [node name="ghost" parent="." instance=ExtResource("6_x62my")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71662, 0.15321, 0)
+script = ExtResource("6_hpt3x")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0898038, 3.76543, -0.448303)
