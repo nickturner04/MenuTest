@@ -7,7 +7,6 @@ public partial class FunnyWalk : Node3D
 	public override void _Ready()
 	{
 		var animp = GetNode<AnimationPlayer>("AnimationPlayer");
-		animp.Play("Walk");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

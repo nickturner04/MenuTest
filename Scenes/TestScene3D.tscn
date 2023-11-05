@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvi0c6gclebhp"]
+[gd_scene load_steps=13 format=3 uid="uid://cvi0c6gclebhp"]
 
-[ext_resource type="Script" path="res://Scripts/CameraOrbit.cs" id="1_bsymc"]
+[ext_resource type="Script" path="res://Scenes/TestScene3D.cs" id="1_258jl"]
 [ext_resource type="PackedScene" uid="uid://kbuwn2u1r8kk" path="res://Models/Character1/character_1.tscn" id="1_xhylc"]
 [ext_resource type="Script" path="res://Models/Character1/FunnyWalk.cs" id="3_k8rsv"]
 [ext_resource type="AudioStream" uid="uid://dslc5f76gskxv" path="res://Sound/Music/ff_full.wav" id="3_oyxrj"]
+[ext_resource type="PackedScene" uid="uid://bcbcyngm38vdp" path="res://Models/Ghost/ghost.tscn" id="6_x62my"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxvg8"]
 albedo_color = Color(0.258824, 0.309804, 0.94902, 1)
+
+[sub_resource type="Animation" id="Animation_4kdb7"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_rwuwm"]
 resource_name = "SphereMove"
@@ -22,20 +26,25 @@ tracks/0/keys = PackedFloat32Array(0, 1, -8.10089, 3.11237, -2.1572, 1, 1, 0.046
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxglu"]
 _data = {
+"RESET": SubResource("Animation_4kdb7"),
 "SphereMove": SubResource("Animation_rwuwm")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj6g5"]
-albedo_color = Color(0.878431, 0.0705882, 0.631373, 1)
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_bbmcb"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_dnq18"]
 
 [node name="TestScene3D" type="Node3D"]
+script = ExtResource("1_258jl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
-script = ExtResource("1_bsymc")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0384, -0.887628, -3.02167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.10089, 3.11237, -2.1572)
 material_override = SubResource("StandardMaterial3D_fxvg8")
 radius = 2.49998
 
@@ -48,13 +57,29 @@ libraries = {
 [node name="Character1" parent="." instance=ExtResource("1_xhylc")]
 script = ExtResource("3_k8rsv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ASP" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_oyxrj")
-autoplay = true
 
 [node name="Node" type="Node" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435826, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9376, 0)
 material_override = SubResource("StandardMaterial3D_fj6g5")
-size = Vector3(6, 1, 7.49619)
+size = Vector3(22.0736, 23.8569, 18.9519)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0831891, 1.9659, 0.66669)
+operation = 2
+size = Vector3(20.1898, 15.904, 16.8657)
+
+[node name="ghost" parent="." instance=ExtResource("6_x62my")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71662, 0.15321, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0898038, 3.76543, -0.448303)
+shadow_enabled = true
+omni_range = 16.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bbmcb")
+camera_attributes = SubResource("CameraAttributesPhysical_dnq18")

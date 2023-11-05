@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcbcyngm38vdp"]
+
+[ext_resource type="PackedScene" uid="uid://b5mwyy6gaskfb" path="res://Models/Ghost/ghost.fbx" id="1_5evb0"]
+
+[node name="ghost" instance=ExtResource("1_5evb0")]
+
+[node name="Cube" parent="RootNode/Armature/Skeleton3D" index="0"]
+cast_shadow = 0

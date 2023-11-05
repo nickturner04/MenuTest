@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cvhccr63sue3q"]
+
+[ext_resource type="Shader" path="res://Shaders/DitheredTransparency.gdshader" id="1_qeugh"]
+[ext_resource type="Texture2D" uid="uid://cmo0cntexjuu7" path="res://Models/Ghost/ghostTex.png" id="2_k3los"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qeugh")
+shader_parameter/transparency = 1.0
+shader_parameter/texture_albedo = ExtResource("2_k3los")
